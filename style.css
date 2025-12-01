@@ -580,3 +580,39 @@ input:focus {
         justify-content: space-between;
     }
 }
+
+/* =========================================
+   7. WEEK NAVIGATION
+   ========================================= */
+.week-nav {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text-muted);
+    margin-top: 5px;
+}
+
+.week-nav a {
+    text-decoration: none;
+    color: var(--text-main);
+    background: var(--bg-body);
+    width: 28px;
+    height: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    border: 1px solid var(--border);
+    transition: all 0.2s ease;
+    font-size: 16px;
+    line-height: 1;
+}
+
+.week-nav a:hover {
+    background: var(--primary);
+    color: white;
+    border-color: var(--primary);
+    transform: scale(1.1);
+}
