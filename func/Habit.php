@@ -6,29 +6,24 @@
 class Habit {
     protected string $name;
     protected string $id;
+    protected string $createdAt;
     
     /**
      * Constructor Habit.
      * 
      * @param string $name Nama kebiasaan.
      * @param string|null $id ID unik kebiasaan (opsional).
+     * @param string|null $createdAt Tanggal pembuatan (Y-m-d).
      */
-    public function __construct(string $name, ?string $id = null) {
+    public function __construct(string $name, ?string $id = null, ?string $createdAt = null) {
         $this->name = $name;
-        // Generate ID unik jika tidak disediakan
         $this->id = $id ?? uniqid();
+        $this->createdAt = $createdAt ?? date('Y-m-d');
     }
-    /**
-     * Mendapatkan nama kebiasaan.
-     * @return string
-     */
-    public function getName(): string { return $this->name; }
 
-    /**
-     * Mendapatkan ID kebiasaan.
-     * @return string
-     */
+    public function getName(): string { return $this->name; }
     public function getId(): string { return $this->id; }
+    public function getCreatedAt(): string { return $this->createdAt; }
 }
 
 /**
@@ -44,9 +39,10 @@ class TrackerHabit extends Habit {
      * @param string $name Nama kebiasaan.
      * @param string|null $id ID unik kebiasaan.
      * @param array $completedDates Daftar tanggal yang sudah diceklis.
+     * @param string|null $createdAt Tanggal pembuatan.
      */
-    public function __construct(string $name, ?string $id = null, array $completedDates = []) {
-        parent::__construct($name, $id);
+    public function __construct(string $name, ?string $id = null, array $completedDates = [], ?string $createdAt = null) {
+        parent::__construct($name, $id, $createdAt);
         $this->completedDates = $completedDates;
     }
 
@@ -84,6 +80,12 @@ class TrackerHabit extends Habit {
     public function getCurrentStreak(): int {
         $streak = 0;
         $checkDate = new DateTime(); // Mulai dari hari ini
+        
+        // Perbaikan: Jika hari ini belum diceklis, cek mulai dari kemarin
+        // agar streak tidak terlihat reset jadi 0.
+        if (!$this->isCompletedOn($checkDate->format('Y-m-d'))) {
+            $checkDate->modify('-1 day');
+        }
 
         while (true) {
             $dateStr = $checkDate->format('Y-m-d');
@@ -92,8 +94,6 @@ class TrackerHabit extends Habit {
                 $streak++;
                 $checkDate->modify('-1 day'); // Mundur satu hari ke belakang
             } else {
-                // Jika hari ini belum dicentang, jangan putus streak dulu kalau streak > 0,
-                // Tapi logika sederhana ini memutus jika hari yang dicek kosong.
                 break; 
             }
         }
@@ -112,6 +112,11 @@ class TrackerHabit extends Habit {
      * @return array Data habit dalam bentuk array.
      */
     public function toArray(): array {
-        return ['id' => $this->id, 'name' => $this->name, 'completed_dates' => $this->completedDates];
+        return [
+            'id' => $this->id, 
+            'name' => $this->name, 
+            'completed_dates' => $this->completedDates,
+            'created_at' => $this->createdAt
+        ];
     }
 }
