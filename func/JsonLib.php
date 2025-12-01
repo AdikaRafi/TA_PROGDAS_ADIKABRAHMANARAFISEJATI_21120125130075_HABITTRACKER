@@ -28,7 +28,14 @@ class JsonLibrary {
         if (is_array($data)) {
             foreach ($data as $item) {
                 $dates = $item['completed_dates'] ?? [];
-                $objects[] = new TrackerHabit($item['name'], $item['id'], $dates);
+                $createdAt = $item['created_at'] ?? null;
+                
+                // Jika created_at tidak ada (data lama), coba ambil dari tanggal completed paling awal
+                if (!$createdAt && !empty($dates)) {
+                    $createdAt = min($dates);
+                }
+
+                $objects[] = new TrackerHabit($item['name'], $item['id'], $dates, $createdAt);
             }
         }
         return $objects;
