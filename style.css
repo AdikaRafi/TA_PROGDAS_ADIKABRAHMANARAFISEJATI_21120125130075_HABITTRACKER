@@ -1,0 +1,790 @@
+/* =========================================
+   1. VARIABEL CSS (THEMING)
+   ========================================= */
+:root {
+    /* Light Theme — Warna default (Mode Terang) */
+    --bg-body: #EEF2F6;
+    /* Background halaman (Light) */
+    --bg-card: #FFFFFF;
+    /* Background kartu/kotak */
+    --text-main: #374B63;
+    /* Warna teks utama */
+    --text-muted: #77859A;
+    /* Warna teks pudar/keterangan */
+
+    --primary: #6C7AE0;
+    /* Warna utama (Ungu/Biru) */
+    --primary-light: #EEF1FF;
+
+    --accent: #F5B453;
+    /* Warna aksen (Oranye) */
+    --border: #E1E6EF;
+    /* Warna garis tepi */
+
+    --success: #4BBF8C;
+    /* Warna hijau sukses */
+    --error: #EA6A6A;
+    /* Warna merah error */
+
+    --shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
+    --shadow-hover: 0 10px 25px rgba(108, 122, 224, 0.18);
+
+    --radius: 24px;
+    /* Kelengkungan sudut besar */
+    --radius-sm: 12px;
+    /* Kelengkungan sudut kecil */
+    --progress-bg: #3f4e86;
+    /* Background track progress bar */
+    --pattern-color: #AEB7C8;
+    /* Warna pola grid background */
+    --texture-shadow: rgba(0, 0, 0, 0.04);
+
+    /* Gradient Light Mode */
+    --bg-gradient:
+        radial-gradient(at 0% 0%, rgba(108, 122, 224, 0.25) 0px, transparent 50%),
+        radial-gradient(at 100% 0%, rgba(245, 180, 83, 0.2) 0px, transparent 50%),
+        radial-gradient(at 100% 100%, rgba(108, 122, 224, 0.15) 0px, transparent 50%),
+        radial-gradient(at 0% 100%, rgba(245, 180, 83, 0.1) 0px, transparent 50%);
+}
+
+/* Override variabel untuk Mode Gelap */
+[data-theme="dark"] {
+    --bg-body: #121923;
+    /* Background gelap */
+    --bg-card: #1C2532;
+    /* Kartu sedikit lebih terang dari bg */
+    --text-main: #E7ECF3;
+    /* Teks menjadi putih/terang */
+    --text-muted: #9AA8B9;
+    --primary: #7D8CFF;
+    --primary-light: #2D3357;
+
+    --accent: #F2C063;
+    --border: #2A3342;
+
+    --success: #4FD4A7;
+    --error: #F28A8A;
+    --shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
+    --shadow-hover: 0 10px 25px rgba(0, 0, 0, 0.35);
+    --progress-bg: #2E3646;
+
+    --pattern-color: #2E3646;
+    --texture-shadow: rgba(255, 255, 255, 0.06);
+
+    /* Gradient Dark Mode (Lebih subtle agar tidak silau) */
+    --bg-gradient:
+        radial-gradient(at 0% 0%, rgba(125, 140, 255, 0.15) 0px, transparent 50%),
+        radial-gradient(at 100% 0%, rgba(242, 192, 99, 0.1) 0px, transparent 50%);
+}
+
+/* =========================================
+   2. RESET & LAYOUT DASAR
+   ========================================= */
+* {
+    box-sizing: border-box;
+    /* Transisi halus saat ganti tema */
+    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+
+body {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    background-color: var(--bg-body);
+    background-image: var(--bg-gradient);
+    background-attachment: fixed;
+    background-size: 100% 100%;
+    color: var(--text-main);
+    margin: 0;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    /* Posisi konten di tengah */
+    min-height: 100vh;
+}
+
+.app-container {
+    max-width: 850px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+    position: relative;
+    z-index: 1;
+}
+
+/* =========================================
+   3. KOMPONEN UI (Header, Card, Input)
+   ========================================= */
+.top-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.logo-area h1 {
+    margin: 0;
+    font-size: 24px;
+    font-weight: 800;
+    background: linear-gradient(135deg, var(--primary), var(--accent));
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
+}
+
+.logo-area p {
+    margin: 5px 0 0;
+    font-size: 13px;
+    color: var(--text-muted);
+    font-weight: 500;
+}
+
+.header-card {
+    background: var(--bg-card);
+    padding: 20px 25px;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    border: 1px solid var(--border);
+    margin-bottom: 10px;
+}
+
+.header-card h1 {
+    margin: 0;
+    font-size: 26px;
+    font-weight: 800;
+    background: linear-gradient(90deg, #667eea, #764ba2);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: #333;
+    -webkit-text-fill-color: transparent;
+}
+
+/* Memperbaiki tampilan Emoji agar tidak terkena efek gradient text */
+.emoji {
+    color: initial !important;
+    background: none !important;
+    -webkit-text-fill-color: initial !important;
+    filter: none !important;
+}
+
+.header-card h1 .emoji {
+    -webkit-text-fill-color: initial !important;
+}
+
+.header-card p {
+    margin: 5px 0 0;
+    font-size: 14px;
+    color: var(--text-muted);
+    font-weight: 600;
+}
+
+.controls {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+/* Tombol Ganti Tema (Bulan/Matahari) */
+.theme-toggle {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    color: var(--text-main);
+    box-shadow: var(--shadow);
+}
+
+.logout-btn {
+    background: rgba(239, 68, 68, 0.1);
+    color: var(--error);
+    border: none;
+    padding: 10px 20px;
+    border-radius: 50px;
+    font-weight: 700;
+    font-size: 12px;
+    cursor: pointer;
+    transition: 0.2s;
+    backdrop-filter: blur(5px);
+}
+
+.logout-btn:hover {
+    background: var(--error);
+    color: white;
+}
+
+.card {
+    background: var(--bg-card);
+    border-radius: var(--radius);
+    padding: 25px;
+    box-shadow: var(--shadow);
+    border: 1px solid var(--border);
+}
+
+.input-group {
+    position: relative;
+    display: flex;
+    width: 100%;
+    gap: 10px;
+}
+
+input[type="text"],
+input[type="password"] {
+    width: 100%;
+    padding: 16px 20px;
+    border: 2px solid var(--border);
+    background: var(--bg-body);
+    color: var(--text-main);
+    border-radius: var(--radius-sm);
+    outline: none;
+    font-size: 15px;
+    font-family: inherit;
+    font-weight: 500;
+}
+
+input:focus {
+    border-color: var(--primary);
+    background: var(--bg-card);
+}
+
+.btn-primary {
+    background: var(--primary);
+    color: white;
+    border: none;
+    padding: 16px 30px;
+    border-radius: var(--radius-sm);
+    font-weight: 700;
+    cursor: pointer;
+    font-size: 15px;
+    white-space: nowrap;
+    transition: transform 0.1s, box-shadow 0.2s;
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-hover);
+}
+
+.btn-primary:active {
+    transform: translateY(0);
+}
+
+/* =========================================
+   4. TABEL HABIT
+   ========================================= */
+.table-wrapper {
+    overflow-x: auto;
+    margin: 0 -25px;
+    padding: 0 25px;
+    padding-bottom: 10px;
+}
+
+.habit-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0 15px;
+}
+
+/* Header Hari (Sen, Sel, Rab...) */
+.th-day {
+    text-align: center;
+    min-width: 50px;
+    padding-bottom: 10px;
+}
+
+.date-capsule {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+}
+
+.day-name {
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: var(--text-muted);
+}
+
+.day-num {
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--text-main);
+}
+
+/* Style khusus hari ini */
+.current-day .day-num {
+    background: var(--primary);
+    color: white;
+    box-shadow: 0 4px 10px rgba(79, 70, 229, 0.3);
+}
+
+.habit-row td {
+    vertical-align: middle;
+}
+
+/* Info Habit (Nama, Streak, Progress Bar) - Sticky Left */
+.habit-info {
+    position: sticky;
+    left: 0;
+    z-index: 10;
+    background: var(--bg-card);
+    padding: 15px;
+    border-radius: var(--radius-sm);
+    box-shadow: 4px 0 15px rgba(0, 0, 0, 0.02);
+    border: 1px solid var(--border);
+    min-width: 180px;
+}
+
+.habit-title {
+    font-weight: 700;
+    font-size: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.habit-meta {
+    font-size: 11px;
+    color: var(--text-muted);
+    margin-top: 5px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+/* Progress Bar */
+.progress-track {
+    height: 4px;
+    background: var(--progress-bg);
+    border-radius: 2px;
+    width: 100%;
+    margin-top: 10px;
+    overflow: hidden;
+}
+
+.progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--primary), var(--accent));
+    border-radius: 2px;
+    transition: width 0.5s ease-out;
+}
+
+/* Checkbox Kustom */
+.check-wrapper {
+    text-align: center;
+}
+
+.btn-check {
+    width: 38px;
+    height: 38px;
+    border-radius: 12px;
+    border: 2px solid var(--border);
+    background: var(--bg-body);
+    cursor: pointer;
+    color: transparent;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    transition: all 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.check-wrapper.is-checked .btn-check {
+    background: var(--primary);
+    border-color: var(--primary);
+    color: white;
+    box-shadow: 0 4px 10px rgba(108, 122, 224, 0.3);
+}
+
+.future-box {
+    width: 38px;
+    height: 38px;
+    border-radius: 12px;
+    background: var(--bg-body);
+    border: 2px dashed var(--border);
+    margin: 0 auto;
+    opacity: 0.5;
+}
+
+.stat-card {
+    background: var(--bg-card);
+    border-radius: var(--radius);
+    padding: 24px;
+    border: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    box-shadow: var(--shadow);
+    transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+    position: relative;
+    overflow: hidden;
+}
+
+.stat-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-hover);
+    border-color: var(--primary);
+}
+
+/* Background decoration for cards */
+.stat-card::after {
+    content: '';
+    position: absolute;
+    right: -20px;
+    top: -20px;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    background: currentColor;
+    opacity: 0.05;
+    z-index: 0;
+}
+
+.stat-icon {
+    width: 56px;
+    height: 56px;
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    flex-shrink: 0;
+    position: relative;
+    z-index: 1;
+}
+
+.stat-icon svg {
+    width: 28px;
+    height: 28px;
+    stroke-width: 2.5;
+}
+
+/* Icon Variants */
+.check-icon {
+    background: rgba(75, 191, 140, 0.1);
+    color: var(--success);
+}
+
+.habit-icon {
+    background: rgba(108, 122, 224, 0.1);
+    color: var(--primary);
+}
+
+.streak-icon {
+    background: rgba(245, 180, 83, 0.1);
+    color: var(--accent);
+}
+
+.stat-content {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    z-index: 1;
+}
+
+.stat-val {
+    font-size: 32px;
+    font-weight: 800;
+    line-height: 1.1;
+    color: var(--text-main);
+    letter-spacing: -0.5px;
+}
+
+.stat-label {
+    font-size: 13px;
+    color: var(--text-muted);
+    font-weight: 600;
+    margin-top: 4px;
+}
+
+.badges-scroll {
+    display: flex;
+    gap: 15px;
+    overflow-x: auto;
+    padding-bottom: 5px;
+    scrollbar-width: none;
+}
+
+.badge-item {
+    background: var(--bg-body);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    padding: 10px 15px;
+    min-width: 160px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.badge-icon {
+    font-size: 24px;
+}
+
+.badge-txt h4 {
+    margin: 0;
+    font-size: 13px;
+    color: var(--text-main);
+}
+
+.badge-txt span {
+    font-size: 11px;
+    color: var(--text-muted);
+}
+
+/* =========================================
+   6. HALAMAN AUTH (LOGIN/REGISTER)
+   ========================================= */
+.auth-container {
+    max-width: 400px;
+    margin: auto;
+    text-align: center;
+    margin-top: 50px;
+    position: relative;
+    z-index: 10;
+}
+
+.alert {
+    padding: 15px;
+    border-radius: var(--radius-sm);
+    margin-bottom: 20px;
+    font-size: 14px;
+    font-weight: 600;
+    text-align: left;
+}
+
+.alert-error {
+    background: rgba(239, 68, 68, 0.1);
+    color: var(--error);
+}
+
+.alert-success {
+    background: rgba(16, 185, 129, 0.1);
+    color: var(--success);
+}
+
+.auth-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.switch-link {
+    margin-top: 20px;
+    font-size: 14px;
+    color: var(--text-muted);
+}
+
+.switch-link a {
+    color: var(--primary);
+    text-decoration: none;
+    font-weight: 700;
+}
+
+@media (max-width: 600px) {
+    .habit-info {
+        min-width: 140px;
+        padding: 10px;
+    }
+
+    .btn-check {
+        width: 32px;
+        height: 32px;
+    }
+
+    .top-bar {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
+    }
+
+    .controls {
+        width: 100%;
+        justify-content: space-between;
+    }
+}
+
+/* =========================================
+   7. WEEK NAVIGATION
+   ========================================= */
+.week-nav {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text-muted);
+    margin-top: 5px;
+}
+
+.week-nav a {
+    text-decoration: none;
+    color: var(--text-main);
+    background: var(--bg-body);
+    width: 28px;
+    height: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    border: 1px solid var(--border);
+    transition: all 0.2s ease;
+    font-size: 16px;
+    line-height: 1;
+}
+
+.week-nav a:hover {
+    background: var(--primary);
+    color: white;
+    border-color: var(--primary);
+    transform: scale(1.1);
+}
+
+/* =========================================
+   8. MODAL EDIT
+   ========================================= */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(5px);
+    z-index: 1000;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.modal-overlay.is-visible {
+    display: flex;
+    opacity: 1;
+}
+
+.modal-content {
+    background: var(--bg-card);
+    padding: 30px;
+    border-radius: var(--radius);
+    width: 90%;
+    max-width: 400px;
+    box-shadow: var(--shadow-hover);
+    border: 1px solid var(--border);
+    transform: translateY(20px) scale(0.95);
+    transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.modal-overlay.is-visible .modal-content {
+    transform: translateY(0) scale(1);
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.modal-header h3 {
+    margin: 0;
+    font-size: 20px;
+    color: var(--text-main);
+    font-weight: 800;
+    background: linear-gradient(135deg, var(--primary), var(--accent));
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.close-modal {
+    background: none;
+    border: none;
+    font-size: 24px;
+    color: var(--text-muted);
+    cursor: pointer;
+    padding: 0;
+    line-height: 1;
+}
+
+.close-modal:hover {
+    color: var(--error);
+}
+
+.modal-footer {
+    margin-top: 20px;
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+}
+
+.btn-secondary {
+    background: var(--bg-body);
+    color: var(--text-muted);
+    border: 1px solid var(--border);
+    padding: 12px 20px;
+    border-radius: var(--radius-sm);
+    font-weight: 600;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.btn-secondary:hover {
+    background: var(--border);
+    color: var(--text-main);
+}
+
+/* =========================================
+   9. ACTION BUTTONS (EDIT & DELETE)
+   ========================================= */
+.btn-action-group {
+    display: flex;
+    gap: 5px;
+    align-items: center;
+}
+
+.btn-edit,
+.btn-delete {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 6px;
+    border-radius: 8px;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-muted);
+}
+
+.btn-edit:hover {
+    background: rgba(108, 122, 224, 0.1);
+    color: var(--primary);
+    transform: translateY(-1px);
+}
+
+.btn-delete:hover {
+    background: rgba(239, 68, 68, 0.1);
+    color: var(--error);
+    transform: translateY(-1px);
+}
+
+/* Icon sizes */
+.btn-edit svg,
+.btn-delete svg {
+    width: 16px;
+    height: 16px;
+    stroke-width: 2.5;
+}
