@@ -71,29 +71,7 @@ Aplikasi siap digunakan!
 ---
 
 ## 📸 Demo Tampilan
-* Halaman Login
-  <img width="377" height="468" alt="image" src="https://github.com/user-attachments/assets/6257b048-e4bc-4fb7-aa43-5cc737715cfc" />
-
-  
-* Halaman Register
-  <img width="380" height="490" alt="image" src="https://github.com/user-attachments/assets/4bcf4cee-29b5-4656-adb2-a6fe0548f352" />
-
-
-* Dashboard
-  <img width="413" height="318" alt="image" src="https://github.com/user-attachments/assets/03267f9c-6e33-440e-ada1-a45a256cec17" />
-
-
-* Tampilan ketika habit sudah ditandai pada hari itu
-  <img width="381" height="170" alt="image" src="https://github.com/user-attachments/assets/35eaaf68-be9b-40cc-83a4-2f104359cd5d" />
-
-
-* Tampilan untuk mengedit nama habit
-  <img width="381" height="297" alt="image" src="https://github.com/user-attachments/assets/df036112-5b38-4bad-a16d-2a93d4ebe406" />
-
-
-* Tampilan DarkMode
-<img width="413" height="204" alt="image" src="https://github.com/user-attachments/assets/b0572742-b64c-458d-af67-4e0bc6113811" />
-
+<table> <tr> <td align="center"> <strong>Halaman Login</strong><br> <img width="330" height="420" src="https://github.com/user-attachments/assets/6257b048-e4bc-4fb7-aa43-5cc737715cfc" /> </td> <td align="center"> <strong>Halaman Register</strong><br> <img width="330" height="420" src="https://github.com/user-attachments/assets/4bcf4cee-29b5-4656-adb2-a6fe0548f352" /> </td> </tr> <tr> <td align="center"> <strong>Dashboard</strong><br> <img width="350" height="260" src="https://github.com/user-attachments/assets/03267f9c-6e33-440e-ada1-a45a256cec17" /> </td> <td align="center"> <strong>Habit Setelah Ditandai</strong><br> <img width="350" height="160" src="https://github.com/user-attachments/assets/35eaaf68-be9b-40cc-83a4-2f104359cd5d" /> </td> </tr> <tr> <td align="center"> <strong>Edit Nama Habit</strong><br> <img width="330" height="260" src="https://github.com/user-attachments/assets/df036112-5b38-4bad-a16d-2a93d4ebe406" /> </td> <td align="center"> <strong>Dark Mode</strong><br> <img width="350" height="180" src="https://github.com/user-attachments/assets/b0572742-b64c-458d-af67-4e0bc6113811" /> </td> </tr> </table>
 ---
 
 ## 🎯 Cara Menggunakan
