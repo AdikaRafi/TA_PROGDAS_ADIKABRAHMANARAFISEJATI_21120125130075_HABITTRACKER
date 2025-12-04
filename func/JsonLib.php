@@ -1,7 +1,7 @@
 <?php
 /**
  * Class JsonLibrary
- * Mengelola pembacaan dan penulisan data Habit ke file JSON user.
+ * Mengelola pembacaan dan penulisan data Habit ke file JSON setiap user.
  */
 class JsonLibrary {
     private string $filePath;

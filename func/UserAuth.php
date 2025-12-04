@@ -1,7 +1,7 @@
 <?php
 /**
  * Class UserAuth
- * untuk menangani registrasi, login, dan penyimpanan data user.
+ * untuk menangani registrasi, login, dan penyimpanan data user pada website.
  */
 class UserAuth {
     private string $usersFile;

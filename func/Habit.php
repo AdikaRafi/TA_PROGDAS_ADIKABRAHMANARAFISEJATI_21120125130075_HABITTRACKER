@@ -1,7 +1,7 @@
 <?php
 /**
  * Class Habit (Base Class)
- * Struktur dasar sebuah kebiasaan.
+ * Struktur dasar sebuah untuk mengatur kebiasaan.
  */
 class Habit {
     protected string $name;

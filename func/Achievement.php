@@ -1,7 +1,7 @@
 <?php
 /**
  * Class AchievementManager
- * untuk memberikan lencana (badges) berdasarkan performa.
+ * untuk memberikan lencana (badges) berdasarkan aktivitas pengguna.
  */
 class AchievementManager {
     /**

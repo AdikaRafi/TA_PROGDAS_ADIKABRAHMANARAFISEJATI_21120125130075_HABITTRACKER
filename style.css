@@ -510,11 +510,11 @@ input:focus {
 }
 
 .badges-scroll {
-    display: flex;
+    display: grid;
     gap: 15px;
-    overflow-x: auto;
-    padding-bottom: 5px;
-    scrollbar-width: none;
+    grid-template-columns: repeat(4, 1fr);
+
+
 }
 
 .badge-item {
@@ -522,7 +522,7 @@ input:focus {
     border: 1px solid var(--border);
     border-radius: var(--radius-sm);
     padding: 10px 15px;
-    min-width: 160px;
+
     display: flex;
     align-items: center;
     gap: 12px;
@@ -787,4 +787,10 @@ input:focus {
     width: 16px;
     height: 16px;
     stroke-width: 2.5;
+}
+
+@media (max-width: 600px) {
+    .badges-scroll {
+        grid-template-columns: repeat(2, 1fr);
+    }
 }

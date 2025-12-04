@@ -18,8 +18,7 @@ if (!isset($_SESSION['theme'])) {
 define('USERS_FILE', 'localsave/users.json');
 
 // Memuat class-class yang dibutuhkan dari folder classes/
-// Pastikan urutan require sesuai dengan dependensi antar class
-
+// Pastikan urutan require sesuai dengan dependensi antar class agar mudah diakses
 // ==========================================
 // BAGIAN 2: CLASS AUTHENTICATION & MODELS
 // ==========================================
